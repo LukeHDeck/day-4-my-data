@@ -156,7 +156,8 @@
         // Uses hash-based random to work with string IDs
         function createModelExpression() {
             // Generate a random number 0-3 based on feature ID (works with strings)
-            const randomPick = ['floor', ['*', ['random', ['id']], 4]];
+            // random function signature: ['random', min, max, seed]
+            const randomPick = ['floor', ['random', 0, 4, ['id']]];
             
             return [
                 'case',
