@@ -153,42 +153,46 @@
         });
 
         // Helper function to create model URL expression
+        // Uses hash-based random to work with string IDs
         function createModelExpression() {
+            // Generate a random number 0-3 based on feature ID (works with strings)
+            const randomPick = ['floor', ['*', ['random', ['id']], 4]];
+            
             return [
                 'case',
                 // Extra Large Trees (randomly pick 1-4)
                 ['==', ['get', 'type'], 'extra-large'],
                 [
                     'case',
-                    ['==', ['%', ['number', ['id']], 4], 0], `${MODEL_BASE_URL}extra-large-tree-1.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 1], `${MODEL_BASE_URL}extra-large-tree-2.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 2], `${MODEL_BASE_URL}extra-large-tree-3.glb`,
+                    ['==', randomPick, 0], `${MODEL_BASE_URL}extra-large-tree-1.glb`,
+                    ['==', randomPick, 1], `${MODEL_BASE_URL}extra-large-tree-2.glb`,
+                    ['==', randomPick, 2], `${MODEL_BASE_URL}extra-large-tree-3.glb`,
                     `${MODEL_BASE_URL}extra-large-tree-4.glb`
                 ],
                 // Large Trees (randomly pick 1-4)
                 ['==', ['get', 'type'], 'large'],
                 [
                     'case',
-                    ['==', ['%', ['number', ['id']], 4], 0], `${MODEL_BASE_URL}large-tree-1.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 1], `${MODEL_BASE_URL}large-tree-2.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 2], `${MODEL_BASE_URL}large-tree-3.glb`,
+                    ['==', randomPick, 0], `${MODEL_BASE_URL}large-tree-1.glb`,
+                    ['==', randomPick, 1], `${MODEL_BASE_URL}large-tree-2.glb`,
+                    ['==', randomPick, 2], `${MODEL_BASE_URL}large-tree-3.glb`,
                     `${MODEL_BASE_URL}large-tree-4.glb`
                 ],
                 // Medium Trees (randomly pick 1-4)
                 ['==', ['get', 'type'], 'medium'],
                 [
                     'case',
-                    ['==', ['%', ['number', ['id']], 4], 0], `${MODEL_BASE_URL}medium-tree-1.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 1], `${MODEL_BASE_URL}medium-tree-2.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 2], `${MODEL_BASE_URL}medium-tree-3.glb`,
+                    ['==', randomPick, 0], `${MODEL_BASE_URL}medium-tree-1.glb`,
+                    ['==', randomPick, 1], `${MODEL_BASE_URL}medium-tree-2.glb`,
+                    ['==', randomPick, 2], `${MODEL_BASE_URL}medium-tree-3.glb`,
                     `${MODEL_BASE_URL}medium-tree-4.glb`
                 ],
                 // Small Trees (randomly pick 1-4) - default
                 [
                     'case',
-                    ['==', ['%', ['number', ['id']], 4], 0], `${MODEL_BASE_URL}small-tree-1.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 1], `${MODEL_BASE_URL}small-tree-2.glb`,
-                    ['==', ['%', ['number', ['id']], 4], 2], `${MODEL_BASE_URL}small-tree-3.glb`,
+                    ['==', randomPick, 0], `${MODEL_BASE_URL}small-tree-1.glb`,
+                    ['==', randomPick, 1], `${MODEL_BASE_URL}small-tree-2.glb`,
+                    ['==', randomPick, 2], `${MODEL_BASE_URL}small-tree-3.glb`,
                     `${MODEL_BASE_URL}small-tree-4.glb`
                 ]
             ];
